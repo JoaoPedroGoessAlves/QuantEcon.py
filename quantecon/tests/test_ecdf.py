@@ -3,8 +3,9 @@ Tests for ecdf.py
 
 """
 import numpy as np
+import pytest
 from numpy.testing import assert_, assert_allclose
-from quantecon import ECDF
+from quantecon.ecdf import ECDF
 
 
 class TestECDF:
@@ -41,3 +42,7 @@ class TestECDF:
         e = self.ecdf(t)
         assert_(t.shape == e.shape)
         assert_(e.dtype == float)
+
+    def test_empty_observations(self):
+        with pytest.raises(ValueError):
+            ECDF([])
