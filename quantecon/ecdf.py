@@ -24,7 +24,10 @@ class ECDF:
     """
 
     def __init__(self, observations):
-        self.observations = np.asarray(observations)
+        obs = np.asarray(observations)
+        if obs.size == 0:
+            raise ValueError("observations must contain at least one value")
+        self.observations = obs
 
     def __repr__(self):
         return self.__str__()
